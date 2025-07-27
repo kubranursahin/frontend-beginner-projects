@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import {format} from "date-fns/format";
+import { format } from "date-fns";
 import UserForm from "./components/UserForm";
 import { questions } from "./data/questions";
 import History from "./components/History";
@@ -49,7 +49,7 @@ function App() {
 
   const finishQuiz = () => {
     setQuizFinished(true)
-    
+
     const newHistoryItem = {
       date: format(new Date(), 'dd.MM.yyyy HH:mm'),
       name: userName,
@@ -88,12 +88,15 @@ function App() {
       ) : (
         <>
           <h2>React Flash Card Quiz - Hoş geldin, {userName}!</h2>
-          <Timer initialTime={timeLeft} onTimeUp={handleTimeUp} />
-          
+          <Timer
+            initialTime={timeLeft}
+            onTimeUp={handleTimeUp}
+          />
+
           <div className="progress">
             Soru {currentQuestionIndex + 1} / {questions.length}
           </div>
-          
+
           <QuestionCard
             questionData={questions[currentQuestionIndex]}
             onAnswer={handleAnswer}

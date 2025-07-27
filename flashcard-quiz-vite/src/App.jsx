@@ -22,42 +22,91 @@ function App() {
   const [history, setHistory] = useState([]); // Quiz geçmişi
 
   useEffect(() => {
-    const savedHistory = JSON.parse(localStorage.getItem("quizHistory"));
-    if (savedHistory && Array.isArray(savedHistory) && savedHistory.length > 0) {
-      setHistory(savedHistory);
+    const savedHistory = localStorage.getItem('quizHistory')
+    if (savedHistory) {
+      setHistory(JSON.parse(savedHistory))
     }
-  }, []); // Uygulama ilk yüklendiğinde geçmişi yükler
+  }, [])
 
-}
-  const startQuiz = () => {
-    setQuizStarted(true);
-    setQuizFinished(false);
-    setCurrentQuestionIndex(0);
-    setScore(0);
-    setTimeLeft(60); // Başlangıçta 60 saniye süre
-    setShowSolutionCount(0); // Çözüm gösterim sayısını sıfırla
+  const startQuiz = (name) => {
+    setUserName(name)
+    setQuizStarted(true)
+    setQuizFinished(false)
+    setCurrentQuestionIndex(0)
+    setScore(0)
+    setTimeLeft(300)
+    setShowSolutionCount(0)
   }
+
   const handleAnswer = (isCorrect) => {
-    if (isCorrect) {
-      setScore(score + 1);
+    if (isCorrect) setScore(score + 1)
+
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1)
+    } else {
+      finishQuiz()
     }
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
-    if (currentQuestionIndex + 1 === questions.length) {
-      setQuizFinished(true);
-      saveHistory();
+  }
+
+  const handleTimeUp = () => finishQuiz()
+
+  const finishQuiz = () => {
+    setQuizFinished(true)
+    
+    const newHistoryItem = {
+      date: format(new Date(), 'dd.MM.yyyy HH:mm'),
+      name: userName,
+      score: score,
+      total: questions.length,
+      percentage: Math.round((score / questions.length) * 100),
+      timeSpent: 300 - timeLeft,
+      usedHints: showSolutionCount
     }
+
+    const updatedHistory = [...history, newHistoryItem]
+    setHistory(updatedHistory)
+    localStorage.setItem('quizHistory', JSON.stringify(updatedHistory))
   }
-  const saveHistory = () => {
-    const newEntry = {
-      userName,
-      score,
-      date: format(new Date(), "dd/MM/yyyy HH:mm:ss"),
-    };
-    const updatedHistory = [...history, newEntry];
-    setHistory(updatedHistory);
-    localStorage.setItem("quizHistory", JSON.stringify(updatedHistory));
+
+  const restartQuiz = () => {
+    setQuizStarted(false)
+    setQuizFinished(false)
   }
-  const handleTimeUp = () => {
-    setQuizFinished(true);
-    saveHistory();
-  }
+
+  return (
+    <div className="container">
+      {!quizStarted && !quizFinished ? (
+        <>
+          <UserForm onStartQuiz={startQuiz} />
+          <History history={history} />
+        </>
+      ) : quizFinished ? (
+        <ResultModal
+          score={score}
+          totalQuestions={questions.length}
+          onRestart={restartQuiz}
+          userName={userName}
+          timeSpent={300 - timeLeft}
+        />
+      ) : (
+        <>
+          <h2>React Flash Card Quiz - Hoş geldin, {userName}!</h2>
+          <Timer initialTime={timeLeft} onTimeUp={handleTimeUp} />
+          
+          <div className="progress">
+            Soru {currentQuestionIndex + 1} / {questions.length}
+          </div>
+          
+          <QuestionCard
+            questionData={questions[currentQuestionIndex]}
+            onAnswer={handleAnswer}
+            onShowSolution={() => setShowSolutionCount(prev => prev + 1)}
+            isLastQuestion={currentQuestionIndex === questions.length - 1}
+          />
+        </>
+      )}
+    </div>
+  )
+}
+
+export default App

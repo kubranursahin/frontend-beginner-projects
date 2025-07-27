@@ -1,9 +1,33 @@
-import React from 'react'
 
-const SearchBar = () => {
+
+import React, { useState } from 'react';
+
+const SearchBar = ({ onSearch }) => {
+  const [city, setCity] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (city.trim()) {
+      onSearch(city);
+    }
+  };
+
   return (
-    <div>SearchBar</div>
-  )
-}
+    <form onSubmit={handleSubmit} className="search-form">
+      <input
+        type="text"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="Şehir adı girin..."
+        className="search-input"
+      />
+      <button type="submit" className="search-button">
+        Ara
+      </button>
+    </form>
+  );
+};
 
-export default SearchBar
+export default SearchBar;
+
+

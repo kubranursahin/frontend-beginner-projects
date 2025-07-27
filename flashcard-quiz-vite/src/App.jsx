@@ -9,7 +9,7 @@ import ResultModal from "./components/ResultModal";
 
 import './App.css';
 function App() {
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(""); // Kullanıcı adını tutar
   const [quizStarted, setQuizStarted] = useState(false); // Quiz'in başlatılıp başlatılmadığını kontrol eder
   const [quizFinished, setQuizFinished] = useState(false); // Quiz'in bitip bitmediğini kontrol eder
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); //
@@ -19,7 +19,7 @@ function App() {
   const [history, setHistory] = useState([]); // Quiz geçmişi
 
   useEffect(() => {
-    const savedHistory = localStorage.getItem('quizHistory')
+    const savedHistory = localStorage.getItem('quizHistory') || '[]'; // LocalStorage'dan geçmişi alır
     if (savedHistory) {
       setHistory(JSON.parse(savedHistory))
     }
@@ -72,12 +72,12 @@ function App() {
 
   return (
     <div className="container">
-      {!quizStarted && !quizFinished ? (
+      {!quizStarted && !quizFinished ? ( // Quiz başlamadıysa gösterilecek form ve geçmiş
         <>
-          <UserForm onStartQuiz={startQuiz} />
+          <UserForm onStartQuiz={startQuiz} /> 
           <History history={history} />
         </>
-      ) : quizFinished ? (
+      ) : quizFinished ? ( // Quiz bitince gösterilecek modal
         <ResultModal
           score={score}
           totalQuestions={questions.length}
@@ -85,7 +85,7 @@ function App() {
           userName={userName}
           timeSpent={300 - timeLeft}
         />
-      ) : (
+      ) : ( // Quiz başladıysa gösterilecek içerik
         <>
           <h2>React Flash Card Quiz - Hoş geldin, {userName}!</h2>
           <Timer
@@ -94,7 +94,7 @@ function App() {
           />
 
           <div className="progress">
-            Soru {currentQuestionIndex + 1} / {questions.length}
+            Soru {currentQuestionIndex + 1} / {questions.length} 
           </div>
 
           <QuestionCard
@@ -104,7 +104,7 @@ function App() {
             isLastQuestion={currentQuestionIndex === questions.length - 1}
           />
         </>
-      )}
+      )}  {/* // Quiz'in başlangıç ve bitiş durumuna göre içerik gösterimi */}
     </div>
   )
 }

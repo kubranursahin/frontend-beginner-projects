@@ -1,12 +1,33 @@
-# React + Vite
+#React Flash Card Quiz
+Bu proje, kullanıcıların React ve JavaScript bilgilerini test etmeleri için tasarlanmış basit bir flash kart quiz uygulamasıdır. Kullanıcılar isimlerini girerek testi başlatabilir, soruları cevaplayabilir, kalan süreyi görebilir ve geçmiş test sonuçlarını takip edebilirler.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+-Özellikler
 
-Currently, two official plugins are available:
+Kullanıcı Girişi
+Zamanlayıcı
+Soru Kartları
+Çözüm Göster
+Puanlama Sistemi
+Test Geçmişi
+Responsive Tasarım
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-Kullanılan Teknolojiler
 
-## Expanding the ESLint configuration
+React
+Tailwind CSS
+date-fns
+JavaScript (ES6+)
+HTML5 & CSS3
+Local Storage
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-Kurulum
+
+>> git clone https://github.com/kubranursahin/react-flash-card-quiz.git
+>> cd react-flash-card-quiz
+
+
+npm install
+
+Projeyi Başlatın:
+
+npm start

@@ -23,8 +23,8 @@ Kullanıcılar isimlerini girerek testi başlatabilir, soruları cevaplayabilir,
 
 >  Kurulum
 
->> git clone https://github.com/kubranursahin/frontend-beginner-projects/tree/main/flashcard-quiz-vite.git
->> cd react-flash-card-quiz
+>> git clone https://github.com/kubranursahin/frontend-beginner-projects.git
+>> >> cd react-flash-card-quiz
 
 
 npm install

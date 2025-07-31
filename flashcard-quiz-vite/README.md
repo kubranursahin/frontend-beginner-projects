@@ -4,7 +4,7 @@ Kullanıcılar isimlerini girerek testi başlatabilir, soruları cevaplayabilir,
 
 >> Özellikler
 
--Kullanıcı Girişi
+- [Kullanıcı Girişi]
 -Zamanlayıcı
 -Soru Kartları
 -Çözüm Göster
@@ -21,7 +21,7 @@ Kullanıcılar isimlerini girerek testi başlatabilir, soruları cevaplayabilir,
 -HTML5 & CSS3
 -Local Storage
 
->> Kurulum
+>  Kurulum
 
 >> git clone https://github.com/kubranursahin/react-flash-card-quiz.git
 >> cd react-flash-card-quiz

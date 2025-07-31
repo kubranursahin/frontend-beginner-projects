@@ -5,21 +5,21 @@ Kullanıcılar isimlerini girerek testi başlatabilir, soruları cevaplayabilir,
 >> Özellikler
 
 - [Kullanıcı Girişi]
--Zamanlayıcı
--Soru Kartları
--Çözüm Göster
--Puanlama Sistemi
--Test Geçmişi
--Responsive Tasarım
+- [Zamanlayıcı]
+- [Soru Kartları]
+- [Çözüm Göster]
+- [Puanlama Sistemi]
+- [Test Geçmişi]
+- [Responsive Tasarım]
 
 >> Kullanılan Teknolojiler
 
--React
--Tailwind CSS
--date-fns
--JavaScript (ES6+)
--HTML5 & CSS3
--Local Storage
+- [React]
+- [Tailwind CSS]
+- [date-fns]
+- [JavaScript (ES6+)]
+- [HTML5 & CSS3]
+- [Local Storage]
 
 >  Kurulum
 
